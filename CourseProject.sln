@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseProject.API", "CourseProject.API\CourseProject.API.csproj", "{51B87419-D86B-483F-8325-F1AB618A1BF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseProject.DAL", "CourseProject.DAL\CourseProject.DAL.csproj", "{F974EDBA-0EC6-4C1D-9CF2-C1C2D65A021A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseProject.BLL", "CourseProject.BLL\CourseProject.BLL.csproj", "{A0A39B39-EF89-4245-A281-10A0D7511313}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51B87419-D86B-483F-8325-F1AB618A1BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51B87419-D86B-483F-8325-F1AB618A1BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51B87419-D86B-483F-8325-F1AB618A1BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51B87419-D86B-483F-8325-F1AB618A1BF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F974EDBA-0EC6-4C1D-9CF2-C1C2D65A021A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F974EDBA-0EC6-4C1D-9CF2-C1C2D65A021A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F974EDBA-0EC6-4C1D-9CF2-C1C2D65A021A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F974EDBA-0EC6-4C1D-9CF2-C1C2D65A021A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A39B39-EF89-4245-A281-10A0D7511313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A39B39-EF89-4245-A281-10A0D7511313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A39B39-EF89-4245-A281-10A0D7511313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A39B39-EF89-4245-A281-10A0D7511313}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
