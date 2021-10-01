@@ -44,7 +44,7 @@ namespace CourseProject.DAL.EF
 
         public async Task<IEnumerable<T>> GetAsync()
         {
-            return await Task.Run(() => _dbSet.AsNoTracking().ToList());
+            return await Task.Run(() => _dbSet.ToList());
         }
 
         public async Task<IEnumerable<T>> GetAsync(Func<T, bool> predicate)

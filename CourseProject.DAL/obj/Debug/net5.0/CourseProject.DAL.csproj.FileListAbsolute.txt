@@ -1,0 +1,15 @@
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\bin\Debug\net5.0\CourseProject.DAL.deps.json
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\bin\Debug\net5.0\CourseProject.DAL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\bin\Debug\net5.0\ref\CourseProject.DAL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\bin\Debug\net5.0\CourseProject.DAL.pdb
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.csprojAssemblyReference.cache
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.AssemblyInfoInputs.cache
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.AssemblyInfo.cs
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.csproj.CoreCompileInputs.cache
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\ref\CourseProject.DAL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.pdb
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\bin\Debug\net5.0\CourseProject.DAL.runtimeconfig.json
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\bin\Debug\net5.0\CourseProject.DAL.runtimeconfig.dev.json
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.DAL\obj\Debug\net5.0\CourseProject.DAL.genruntimeconfig.cache

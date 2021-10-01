@@ -11,7 +11,8 @@ namespace CourseProject.BLL.Services
 
         public Task<IEnumerable<TModel>> GetAsync();
         public Task<IEnumerable<TModel>> GetAsync(Func<TEntity, bool> predicate);
-        public Task<TModel> CreateAsync(TModel item);
+        //public Task<TModel> CreateAsync(TModel item);
+        public Task<bool> CreateAsync(TModel item);
         public bool RemoveAsync(TModel item);
         public bool UpdateAsync(TModel item);
 

@@ -25,20 +25,44 @@ namespace CourseProject.BLL.Services
             return _mapper.Map<IEnumerable<TModel>>(entities);
         }
 
+        public async Task<TModel> FindByIdAsync(Guid id)
+        {
+            TEntity entity = await _repository.FindByIdAsync(id);
+            return _mapper.Map<TModel>(entity);
+        }
+        
+
         public async Task<IEnumerable<TModel>> GetAsync(Func<TEntity, bool> predicate)
         {
             IEnumerable<TEntity> entity = await _repository.GetAsync(predicate);
             return _mapper.Map<IEnumerable<TModel>>(entity);
         }
 
-        public async Task<TModel> CreateAsync(TModel tModel)
+        public async Task<bool> CreateAsync(TModel tModel)
         {
             TEntity dbEntity;
             try
             {
                 TEntity tEntity = _mapper.Map<TEntity>(tModel);
                 await _repository.CreateAsync(tEntity);
-                dbEntity = await _repository.FindAsync(tEntity);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Log.Error(e.Message);
+            }
+
+            return false;
+        }
+        /*public async Task<TModel> CreateAsync(TModel tModel, Guid id)
+        {
+            TEntity dbEntity;
+            try
+            {
+                TEntity tEntity = _mapper.Map<TEntity>(tModel);
+                await _repository.CreateAsync(tEntity);
+                dbEntity = await _repository.FindByIdAsync(id);
             }
             catch (Exception e)
             {
@@ -48,7 +72,7 @@ namespace CourseProject.BLL.Services
             }
 
             return _mapper.Map<TModel>(dbEntity);
-        }
+        }*/
 
         public bool RemoveAsync(TModel tModel)
         {

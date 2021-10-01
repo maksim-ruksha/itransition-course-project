@@ -1,0 +1,15 @@
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\bin\Debug\net5.0\CourseProject.BLL.deps.json
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\bin\Debug\net5.0\CourseProject.BLL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\bin\Debug\net5.0\ref\CourseProject.BLL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\bin\Debug\net5.0\CourseProject.BLL.pdb
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\bin\Debug\net5.0\CourseProject.DAL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\bin\Debug\net5.0\CourseProject.DAL.pdb
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.csprojAssemblyReference.cache
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.AssemblyInfoInputs.cache
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.AssemblyInfo.cs
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.csproj.CoreCompileInputs.cache
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.csproj.CopyComplete
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\ref\CourseProject.BLL.dll
+C:\Users\maksi\Desktop\Projects\itransition\CourseProject\CourseProject.BLL\obj\Debug\net5.0\CourseProject.BLL.pdb
