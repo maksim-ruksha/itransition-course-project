@@ -37,10 +37,10 @@ namespace CourseProject.DAL.EF
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task<T> FindAsync(T item)
+        /*public async Task<T> FindAsync(T item)
         {
             return await _dbSet.FindAsync(item);
-        }
+        }*/
 
         public async Task<IEnumerable<T>> GetAsync()
         {

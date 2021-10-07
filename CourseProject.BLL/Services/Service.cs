@@ -40,7 +40,6 @@ namespace CourseProject.BLL.Services
 
         public async Task<bool> CreateAsync(TModel tModel)
         {
-            TEntity dbEntity;
             try
             {
                 TEntity tEntity = _mapper.Map<TEntity>(tModel);
@@ -55,6 +54,7 @@ namespace CourseProject.BLL.Services
 
             return false;
         }
+        
         /*public async Task<TModel> CreateAsync(TModel tModel, Guid id)
         {
             TEntity dbEntity;

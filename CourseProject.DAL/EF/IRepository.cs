@@ -11,7 +11,7 @@ namespace CourseProject.DAL.EF
 
         public Task<T> FindByIdAsync(Guid id);
 
-        public Task<T> FindAsync(T item);
+        //public Task<T> FindAsync(T item);
 
         public Task<IEnumerable<T>> GetAsync();
 

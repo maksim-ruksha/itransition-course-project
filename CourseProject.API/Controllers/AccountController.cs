@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -13,9 +11,6 @@ using CourseProject.BLL.Services;
 using CourseProject.DAL.EF;
 using CourseProject.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
-using Microsoft.IdentityModel.SecurityTokenService;
-using Microsoft.IdentityModel.Tokens;
 
 namespace CourseProject.Controllers
 {
@@ -29,16 +24,19 @@ namespace CourseProject.Controllers
             _userService = new Service<UserModel, UserEntity>(repository, mapper);
         }
 
-        [HttpGet("/test")]
-        public async Task<ActionResult> Test(string name)
+        [HttpGet("/register")]
+        public async Task<ActionResult> Register(string name, string password, string passwordRepeat)
         {
-            return Ok($"{name} is sus. amogus");
-        }
-
-        [HttpPost("/register")]
-        public async Task<ActionResult> Register(string name, string password, string confirmPassword)
-        {
-            if (!password.Equals(confirmPassword))
+            if (string.IsNullOrWhiteSpace(name))
+                return BadRequest("Name is empty");
+            
+            if (string.IsNullOrWhiteSpace(password))
+                return BadRequest("Password is empty");
+            
+            if (string.IsNullOrWhiteSpace(passwordRepeat))
+                return BadRequest("Repeated Password is empty");
+            
+            if (!password.Equals(passwordRepeat))
                 return BadRequest("Passwords are not same");
 
             IEnumerable<UserModel> possibleExistingUser = await _userService.GetAsync(user => user.Name.Equals(name));
@@ -54,22 +52,9 @@ namespace CourseProject.Controllers
             bool success = await _userService.CreateAsync(newUser);
             if (!success)
                 return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
-            return Ok();
-        }
 
-        [HttpGet("/token")]
-        public async Task<ActionResult> Token(string name, string password)
-        {
-            ClaimsIdentity identity = await GetIdentity(name, password);
-            if (identity == null)
-            {
-                return BadRequest("Invalid username or password");
-            }
-
-            string encodedJwt = JwtCoder.Encode(identity);
-            HttpContext.Response.Cookies.Append("jwt", encodedJwt);
-
-            return Json(encodedJwt);
+            UserModel dbNewUser = await _userService.FindByIdAsync(newUser.Id);
+            return new JsonResult(dbNewUser);
         }
 
         [HttpGet("/login")]
@@ -91,22 +76,6 @@ namespace CourseProject.Controllers
                 ));
             return new JsonResult(userModel);
         }
-
-        [HttpGet("/tokenCheck")]
-        public async Task<ActionResult> TokenCheck(string token)
-        {
-            try
-            {
-                JwtCoder.Decode(token);
-                HttpContext.Response.Cookies.Append("jwt", token);
-                return Ok("Token is valid");
-            }
-            catch (Exception e)
-            {
-                return BadRequest($"Invalid token: {e}");
-            }
-        }
-
 
         private async Task<ClaimsIdentity> GetIdentity(string name, string password)
         {
