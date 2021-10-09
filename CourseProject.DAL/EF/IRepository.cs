@@ -19,7 +19,7 @@ namespace CourseProject.DAL.EF
 
         public void RemoveAsync(T item);
 
-        public void UpdateAsync(T item);
+        public Task UpdateAsync(T item);
 
     }
 }

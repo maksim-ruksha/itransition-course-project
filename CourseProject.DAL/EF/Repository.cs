@@ -58,7 +58,7 @@ namespace CourseProject.DAL.EF
             await _context.SaveChangesAsync();
         }
 
-        public async void UpdateAsync(T item)
+        public async Task UpdateAsync(T item)
         {
             _context.Entry(item).State = EntityState.Modified;
             await _context.SaveChangesAsync();

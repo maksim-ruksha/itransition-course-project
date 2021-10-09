@@ -92,12 +92,12 @@ namespace CourseProject.BLL.Services
             return true;
         }
 
-        public bool UpdateAsync(TModel tModel)
+        public async Task<bool> UpdateAsync(TModel tModel)
         {
             try
             {
                 TEntity tEntity = _mapper.Map<TEntity>(tModel);
-                _repository.UpdateAsync(tEntity);
+                await _repository.UpdateAsync(tEntity);
             }
             catch (Exception e)
             {

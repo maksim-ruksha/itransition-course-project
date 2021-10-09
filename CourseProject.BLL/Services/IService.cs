@@ -14,7 +14,7 @@ namespace CourseProject.BLL.Services
         //public Task<TModel> CreateAsync(TModel item);
         public Task<bool> CreateAsync(TModel item);
         public bool RemoveAsync(TModel item);
-        public bool UpdateAsync(TModel item);
+        public Task<bool> UpdateAsync(TModel item);
 
     }
 }

@@ -52,7 +52,7 @@ namespace CourseProject.Controllers
         public async Task<ActionResult> EditProblem(ProblemModel theNewModel)
         {
             // TODO: send proper messages?
-            bool success = _problemService.UpdateAsync(theNewModel);
+            bool success = await _problemService.UpdateAsync(theNewModel);
             if (!success)
                 return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
             return Ok();

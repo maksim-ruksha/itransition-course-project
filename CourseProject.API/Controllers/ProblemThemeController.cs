@@ -45,15 +45,16 @@ namespace CourseProject.Controllers
         }
 
         // TODO: admin only UpdateProblemTheme()
-        [HttpGet("/updateProblemTheme")]
-        public async Task<ActionResult> UpdateProblemTheme(ProblemThemeModel problemTheme)
+        [HttpPost("/updateProblemTheme")]
+        public async Task<ActionResult> UpdateProblemTheme(ProblemThemeModel newProblemTheme)
         {
             try
             {
-                ProblemThemeModel theme = await _problemThemeService.FindByIdAsync(problemTheme.Id);
-                bool success = _problemThemeService.UpdateAsync(problemTheme);
+                /*ProblemThemeModel theme = await _problemThemeService.FindByIdAsync(Guid.Parse("3FA85F64-5717-4562-B3FC-2C963F66AFA6"));
+                _problemThemeService.UpdateAsync(theme);*/
+                bool success = await _problemThemeService.UpdateAsync(newProblemTheme);
                 if (!success)
-                    return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
+                    return new StatusCodeResult((int) HttpStatusCode.InternalServerError);    
                 return Ok();
             }
             catch (Exception)
@@ -62,7 +63,7 @@ namespace CourseProject.Controllers
             }
         }
 
-        // TODO: remove RemoveProblemTheme? Some shit would happen if some problems will point to non existing problem
+        // TODO: remove RemoveProblemTheme? Some shit would happen if problems will point to non existing problem
         [HttpGet("/removeProblemTheme")]
         public async Task<ActionResult> RemoveProblemTheme(Guid id)
         {
