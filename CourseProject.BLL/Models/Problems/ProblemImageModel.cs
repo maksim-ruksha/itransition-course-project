@@ -6,8 +6,8 @@ namespace CourseProject.BLL.Models.Problems
 {
     public class ProblemImageModel
     {
-        [Required] public Guid Id { get; set; }
-        [Required] public IFormFile Image { get; set; }
+        public Guid Id { get; set; }
+        public IFormFile Image { get; set; }
         public string ImageFileName { get; set; }
     }
 }

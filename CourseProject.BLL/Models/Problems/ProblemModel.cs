@@ -6,15 +6,15 @@ namespace CourseProject.BLL.Models.Problems
 {
     public class ProblemModel
     {
-        [Required] public Guid Id { get; set; }
-        [Required] public DateTime PublicationDateTime { get; set; }
-        [Required] public string Title { get; set; }
-        [Required] public string RawDescription { get; set; }
-        [Required] public ProblemThemeModel ProblemTheme { get; set; }
-        [Required] public IEnumerable<ProblemImageModel> Images { get; set; }
-        [Required] public UserModel Author { get; set; }
-        public IEnumerable<ProblemTagModel> Tags { get; set; }
-        public IEnumerable<ProblemSolutionVariantModel> SolutionVariants { get; set; }
-        public IEnumerable<ProblemRatingModel> Ratings { get; set; }
+        public Guid Id { get; set; }
+        public DateTime PublicationDateTime { get; set; }
+        public string Title { get; set; }
+        public string RawDescription { get; set; }
+        public ProblemThemeModel ProblemTheme { get; set; }
+        public IList<ProblemImageModel> Images { get; set; }
+        public UserModel Author { get; set; }
+        public IList<ProblemTagModel> Tags { get; set; }
+        public IList<ProblemSolutionVariantModel> SolutionVariants { get; set; }
+        public IList<ProblemRatingModel> Ratings { get; set; }
     }
 }

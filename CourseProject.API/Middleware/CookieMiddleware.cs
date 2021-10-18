@@ -20,6 +20,7 @@ namespace CourseProject.Middleware
             try
             {
                 string jwtCookie = context.Request.Cookies["jwt"];
+                
                 if (!string.IsNullOrWhiteSpace(jwtCookie))
                 {
                     

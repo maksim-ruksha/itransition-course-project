@@ -19,7 +19,7 @@ namespace CourseProject.Controllers
 
         public ProblemsController(
             IRepository<ProblemEntity> problemRepository,
-            IRepository<ProblemThemeEntity> themeRepository, 
+            IRepository<ProblemThemeEntity> themeRepository,
             IMapper mapper,
             IWebHostEnvironment environment)
         {
@@ -68,11 +68,8 @@ namespace CourseProject.Controllers
         }
 
         [HttpPost("/createProblem")]
-        public async Task<ActionResult> CreateProblem([FromForm] ProblemModel problem)
+        public async Task<ActionResult> CreateProblem([FromBody]ProblemModel problem)
         {
-            /*Console.WriteLine("Adding Problem");
-            ProblemThemeModel problemTheme = (await _themeService.GetAsync(theme => theme.Value.Equals(problem.ProblemTheme.Value))).FirstOrDefault();
-            problem.ProblemTheme = problemTheme;*/
             bool success = await _problemService.CreateAsync(problem);
             if (!success)
                 return new StatusCodeResult((int) HttpStatusCode.InternalServerError);

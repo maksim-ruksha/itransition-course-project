@@ -5,7 +5,7 @@ namespace CourseProject.BLL.Models.Problems
 {
     public class ProblemSolutionVariantModel
     {
-        [Required] public Guid Id { get; set; }
-        [Required] public string Solution { get; set; }
+        public Guid Id { get; set; }
+        public string Solution { get; set; }
     }
 }

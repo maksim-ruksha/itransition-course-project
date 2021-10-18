@@ -5,7 +5,7 @@ namespace CourseProject.BLL.Models.Problems
 {
     public class ProblemRatingModel
     {
-        [Required] public Guid Id { get; set; }
-        [Required] public int Rating { get; set; }
+        public Guid Id { get; set; }
+        public int Rating { get; set; }
     }
 }

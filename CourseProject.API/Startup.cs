@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
+
 
 namespace CourseProject
 {
@@ -59,7 +61,10 @@ namespace CourseProject
             
             services.AddScoped<IService<UserModel, UserEntity>, Service<UserModel, UserEntity>>();
             
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
+                    = new DefaultContractResolver());
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "CourseProject.API", Version = "v1"});
