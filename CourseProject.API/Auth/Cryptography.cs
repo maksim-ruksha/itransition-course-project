@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Security.Cryptography;
 
+
 namespace CourseProject.Auth
 {
     public static class Cryptography
     {
         private const int Iterations = 10000;
+
         public static string HashPassword(string password)
         {
             byte[] salt;

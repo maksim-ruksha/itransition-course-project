@@ -9,6 +9,7 @@ using CourseProject.BLL.Models.Problems;
 using CourseProject.BLL.Services;
 using CourseProject.DAL.EF;
 using CourseProject.DAL.Entities.Problems;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseProject.Controllers
@@ -18,9 +19,9 @@ namespace CourseProject.Controllers
     {
         private Service<ProblemThemeModel, ProblemThemeEntity> _problemThemeService;
 
-        public ProblemThemeController(IRepository<ProblemThemeEntity> repository, IMapper mapper)
+        public ProblemThemeController(IRepository<ProblemThemeEntity> repository, IMapper mapper, IWebHostEnvironment environment)
         {
-            _problemThemeService = new Service<ProblemThemeModel, ProblemThemeEntity>(repository, mapper);
+            _problemThemeService = new Service<ProblemThemeModel, ProblemThemeEntity>(repository, mapper, environment);
         }
 
         [HttpGet("/getProblemThemes")]
@@ -37,7 +38,7 @@ namespace CourseProject.Controllers
             IEnumerable<ProblemThemeModel> possibleExistingTheme =
                 await _problemThemeService.GetAsync(theme => theme.Value.Equals(problemTheme.Value));
             if (possibleExistingTheme.Any())
-                return BadRequest("This theme already exist");
+                return BadRequest("This theme already exists");
             bool success = await _problemThemeService.CreateAsync(problemTheme);
             if (!success)
                 return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
@@ -50,29 +51,9 @@ namespace CourseProject.Controllers
         {
             try
             {
-                /*ProblemThemeModel theme = await _problemThemeService.FindByIdAsync(Guid.Parse("3FA85F64-5717-4562-B3FC-2C963F66AFA6"));
-                _problemThemeService.UpdateAsync(theme);*/
                 bool success = await _problemThemeService.UpdateAsync(newProblemTheme);
                 if (!success)
                     return new StatusCodeResult((int) HttpStatusCode.InternalServerError);    
-                return Ok();
-            }
-            catch (Exception)
-            {
-                return BadRequest("Could not find problem theme");
-            }
-        }
-
-        // TODO: remove RemoveProblemTheme? Some shit would happen if problems will point to non existing problem
-        [HttpGet("/removeProblemTheme")]
-        public async Task<ActionResult> RemoveProblemTheme(Guid id)
-        {
-            try
-            {
-                ProblemThemeModel theme = await _problemThemeService.FindByIdAsync(id);
-                bool success = _problemThemeService.RemoveAsync(theme);
-                if (!success)
-                    return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
                 return Ok();
             }
             catch (Exception)

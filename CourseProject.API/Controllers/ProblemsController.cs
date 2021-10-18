@@ -8,6 +8,7 @@ using CourseProject.BLL.Models.Problems;
 using CourseProject.BLL.Services;
 using CourseProject.DAL.EF;
 using CourseProject.DAL.Entities.Problems;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseProject.Controllers
@@ -16,19 +17,27 @@ namespace CourseProject.Controllers
     {
         private readonly Service<ProblemModel, ProblemEntity> _problemService;
 
-        public ProblemsController(IRepository<ProblemEntity> repository, IMapper mapper)
+        public ProblemsController(
+            IRepository<ProblemEntity> problemRepository,
+            IRepository<ProblemThemeEntity> themeRepository, 
+            IMapper mapper,
+            IWebHostEnvironment environment)
         {
-            _problemService = new Service<ProblemModel, ProblemEntity>(repository, mapper);
+            _problemService = new Service<ProblemModel, ProblemEntity>(problemRepository, mapper, environment);
         }
 
         [HttpGet("/searchProblems")]
         public async Task<IEnumerable<ProblemModel>> SearchProblems(string whatToSearch)
         {
-            // TODO: search in comments
-            // TODO: validate data (length <= X)
             IEnumerable<ProblemModel> problems =
                 await _problemService.GetAsync(problem => problem.Title.Contains(whatToSearch));
             return problems;
+        }
+
+        [HttpGet("/getProblems")]
+        public async Task<IEnumerable<ProblemModel>> GetProblems()
+        {
+            return await _problemService.GetAsync();
         }
 
         // TODO: sus shit
@@ -59,8 +68,11 @@ namespace CourseProject.Controllers
         }
 
         [HttpPost("/createProblem")]
-        public async Task<ActionResult> CreateProblem(ProblemModel problem)
+        public async Task<ActionResult> CreateProblem([FromForm] ProblemModel problem)
         {
+            /*Console.WriteLine("Adding Problem");
+            ProblemThemeModel problemTheme = (await _themeService.GetAsync(theme => theme.Value.Equals(problem.ProblemTheme.Value))).FirstOrDefault();
+            problem.ProblemTheme = problemTheme;*/
             bool success = await _problemService.CreateAsync(problem);
             if (!success)
                 return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
@@ -74,6 +86,6 @@ namespace CourseProject.Controllers
             if (!success)
                 return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
             return Ok();
-        }   
+        }
     }
 }

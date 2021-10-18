@@ -13,6 +13,7 @@ namespace CourseProject.DAL.EF
         public DbSet<ProblemRatingEntity> Ratings { get; set; }
         public DbSet<ProblemTagEntity> Tags { get; set; }
         public DbSet<ProblemSolutionVariantEntity> SolutionVariants { get; set; }
+        public DbSet<ProblemImageEntity> Images { get; set; }
         
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {

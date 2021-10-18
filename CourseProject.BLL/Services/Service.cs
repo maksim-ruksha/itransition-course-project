@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using CourseProject.DAL.EF;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Serilog;
 
 
@@ -12,11 +15,13 @@ namespace CourseProject.BLL.Services
     {
         private readonly IRepository<TEntity> _repository;
         private readonly IMapper _mapper;
+        private IWebHostEnvironment _environment;
 
-        public Service(IRepository<TEntity> repository, IMapper mapper)
+        public Service(IRepository<TEntity> repository, IMapper mapper, IWebHostEnvironment environment)
         {
             _repository = repository;
             _mapper = mapper;
+            _environment = environment;
         }
 
         public async Task<IEnumerable<TModel>> GetAsync()
@@ -106,6 +111,25 @@ namespace CourseProject.BLL.Services
             }
 
             return true;
+        }
+
+        public string UploadFile(string path, IFormFile file)
+        {
+            string extension = ".png";
+            if (file == null)
+            {
+                return null;
+            }
+            
+            string uploadsFolder = Path.Combine(_environment.WebRootPath, path);
+            string uniqueFileName = Guid.NewGuid() + extension;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            return uniqueFileName;
         }
         
     }

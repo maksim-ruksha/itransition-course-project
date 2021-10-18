@@ -10,6 +10,7 @@ using CourseProject.BLL.Models;
 using CourseProject.BLL.Services;
 using CourseProject.DAL.EF;
 using CourseProject.DAL.Entities;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseProject.Controllers
@@ -19,9 +20,9 @@ namespace CourseProject.Controllers
     {
         private Service<UserModel, UserEntity> _userService;
 
-        public AccountController(IRepository<UserEntity> repository, IMapper mapper)
+        public AccountController(IRepository<UserEntity> repository, IMapper mapper, IWebHostEnvironment environment)
         {
-            _userService = new Service<UserModel, UserEntity>(repository, mapper);
+            _userService = new Service<UserModel, UserEntity>(repository, mapper, environment);
         }
 
         [HttpGet("/register")]
