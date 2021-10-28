@@ -15,11 +15,12 @@ namespace CourseProject.Controllers
 {
     public class ProblemsController : Controller
     {
+        // TODO: transfer to config
+        private const string ImagesPath = "Images";
         private readonly Service<ProblemModel, ProblemEntity> _problemService;
 
         public ProblemsController(
             IRepository<ProblemEntity> problemRepository,
-            IRepository<ProblemThemeEntity> themeRepository,
             IMapper mapper,
             IWebHostEnvironment environment)
         {
@@ -68,7 +69,7 @@ namespace CourseProject.Controllers
         }
 
         [HttpPost("/createProblem")]
-        public async Task<ActionResult> CreateProblem([FromBody]ProblemModel problem)
+        public async Task<ActionResult> CreateProblem([FromForm] ProblemModel problem)
         {
             bool success = await _problemService.CreateAsync(problem);
             if (!success)

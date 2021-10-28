@@ -17,6 +17,12 @@ namespace CourseProject.DAL.EF
 
         public Task<IEnumerable<T>> GetAsync(Func<T, bool> predicate);
 
+        public void Attach(T item);
+
+        public IEnumerable<T> AsNoTracking(Func<T, bool> predicate);
+
+        public void DetachLocal(T item);
+
         public void RemoveAsync(T item);
 
         public Task UpdateAsync(T item);

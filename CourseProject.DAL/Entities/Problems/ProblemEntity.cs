@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseProject.DAL.Entities.Problems
 {
@@ -9,10 +10,11 @@ namespace CourseProject.DAL.Entities.Problems
         public DateTime PublicationDateTime { get; set; }
         public string Title { get; set; }
         public string RawDescription { get; set; }
-        public ProblemThemeEntity ProblemTheme { get; set; }
-        public UserEntity Author { get; set; }
-        public IEnumerable<ProblemTagEntity> Tags { get; set; }
-        public IEnumerable<ProblemSolutionVariantEntity> SolutionVariants { get; set; }
-        public IEnumerable<ProblemRatingEntity> Ratings { get; set; }
+        public virtual UserEntity Author { get; set; }
+
+        public virtual IEnumerable<ProblemImageEntity> Images { get; set; }
+        public virtual IEnumerable<ProblemTagEntity> Tags { get; set; }
+        public virtual IEnumerable<ProblemSolutionVariantEntity> SolutionVariants { get; set; }
+        public virtual IEnumerable<ProblemRatingEntity> Ratings { get; set; }
     }
 }

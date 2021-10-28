@@ -55,7 +55,17 @@ namespace CourseProject.Controllers
                 return new StatusCodeResult((int) HttpStatusCode.InternalServerError);
 
             UserModel dbNewUser = await _userService.FindByIdAsync(newUser.Id);
-            return new JsonResult(dbNewUser);
+            ClaimsIdentity identity = await GetIdentity(name, password);
+            if (identity == null)
+            {
+                return BadRequest("What the fuck");
+            }
+            UserModel userModel = await _userService.FindByIdAsync(
+                Guid.Parse(
+                    // ReSharper disable once PossibleNullReferenceException
+                    identity.Claims.FirstOrDefault().Value
+                ));
+            return new JsonResult(userModel);
         }
 
         [HttpGet("/login")]

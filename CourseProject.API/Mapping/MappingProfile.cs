@@ -15,10 +15,7 @@ namespace CourseProject.Mapping
             
             CreateMap<ProblemModel, ProblemEntity>();
             CreateMap<ProblemEntity, ProblemModel>();
-            
-            CreateMap<ProblemThemeModel, ProblemThemeEntity>();
-            CreateMap<ProblemThemeEntity, ProblemThemeModel>();
-            
+
             CreateMap<ProblemCommentModel, ProblemCommentEntity>();
             CreateMap<ProblemCommentEntity, ProblemCommentModel>();
             
@@ -33,6 +30,9 @@ namespace CourseProject.Mapping
             
             CreateMap<ProblemRatingModel, ProblemRatingEntity>();
             CreateMap<ProblemRatingEntity, ProblemRatingModel>();
+
+            CreateMap<ProblemImageModel, ProblemImageEntity>();
+            CreateMap<ProblemImageEntity, ProblemImageModel>();
         }
     }
 }

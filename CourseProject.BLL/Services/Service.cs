@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 using CourseProject.DAL.EF;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,7 +37,7 @@ namespace CourseProject.BLL.Services
             TEntity entity = await _repository.FindByIdAsync(id);
             return _mapper.Map<TModel>(entity);
         }
-        
+
 
         public async Task<IEnumerable<TModel>> GetAsync(Func<TEntity, bool> predicate)
         {
@@ -59,25 +61,50 @@ namespace CourseProject.BLL.Services
 
             return false;
         }
-        
-        /*public async Task<TModel> CreateAsync(TModel tModel, Guid id)
+
+        public bool Attach(TModel tModel)
         {
-            TEntity dbEntity;
             try
             {
                 TEntity tEntity = _mapper.Map<TEntity>(tModel);
-                await _repository.CreateAsync(tEntity);
-                dbEntity = await _repository.FindByIdAsync(id);
+                _repository.Attach(tEntity);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
                 Log.Error(e.Message);
-                return null;
+                return false;
+            }
+            return true;
+        }
+
+        public bool DetachLocal(TModel tModel)
+        {
+            try
+            {
+                TEntity tEntity = _mapper.Map<TEntity>(tModel);
+                _repository.DetachLocal(tEntity);
+            }
+            catch (Exception e)
+            {
+               Log.Error(e.Message);
+               return false;
             }
 
-            return _mapper.Map<TModel>(dbEntity);
-        }*/
+            return true;
+        }
+
+        public IEnumerable<TModel> AsNoTracking(Func<TEntity, bool> predicate)
+        {
+            try
+            {
+                IEnumerable<TEntity> entities = _repository.AsNoTracking(predicate);
+                return _mapper.Map<IEnumerable<TModel>>(entities);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
         public bool RemoveAsync(TModel tModel)
         {
@@ -85,7 +112,6 @@ namespace CourseProject.BLL.Services
             {
                 TEntity tEntity =
                     _mapper.Map<TEntity>(tModel);
-
                 _repository.RemoveAsync(tEntity);
             }
             catch (Exception e)
@@ -120,17 +146,35 @@ namespace CourseProject.BLL.Services
             {
                 return null;
             }
-            
+
             string uploadsFolder = Path.Combine(_environment.WebRootPath, path);
             string uniqueFileName = Guid.NewGuid() + extension;
             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
                 file.CopyTo(fileStream);
             }
 
+            
             return uniqueFileName;
         }
-        
+
+        /*public bool UploadImageToCloudinary(string name, IFormFile file)
+        {
+            
+            var uploadParams = new ImageUploadParams{
+                File = new FileDescription(@"https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg"),
+                PublicId = "olympic_flag"
+            };
+            
+            var uploadResult = сloudinary.Upload(uploadParams);
+            
+            
+        }*/
     }
 }

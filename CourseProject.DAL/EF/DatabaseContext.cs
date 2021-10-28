@@ -9,7 +9,6 @@ namespace CourseProject.DAL.EF
         public DbSet<UserEntity> Users { get; set; } 
         public DbSet<ProblemEntity> Problems { get; set; }
         public DbSet<ProblemCommentEntity> Comments { get; set; }
-        public DbSet<ProblemThemeEntity> Themes { get; set; }
         public DbSet<ProblemRatingEntity> Ratings { get; set; }
         public DbSet<ProblemTagEntity> Tags { get; set; }
         public DbSet<ProblemSolutionVariantEntity> SolutionVariants { get; set; }
@@ -27,13 +26,22 @@ namespace CourseProject.DAL.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserEntity>().ToTable("Users");
-            modelBuilder.Entity<ProblemEntity>().ToTable("Problems");
-            modelBuilder.Entity<ProblemCommentEntity>().ToTable("ProblemComments");
-            modelBuilder.Entity<ProblemThemeEntity>().ToTable("ProblemThemes");
-            modelBuilder.Entity<ProblemRatingEntity>().ToTable("ProblemRatings");
-            modelBuilder.Entity<ProblemTagEntity>().ToTable("ProblemTags");
-            modelBuilder.Entity<ProblemSolutionVariantEntity>().ToTable("ProblemSolutionVariants");
+            //modelBuilder.Entity<ProblemEntity>().HasOne<ProblemThemeEntity>().WithMany();
+            /*modelBuilder.Entity<UserEntity>()
+                .ToTable("Users");
+            modelBuilder.Entity<ProblemEntity>().HasOne<ProblemThemeEntity>();
+            
+            modelBuilder.Entity<ProblemCommentEntity>()
+                .ToTable("ProblemComments");
+            modelBuilder.Entity<ProblemThemeEntity>().HasMany<ProblemEntity>();
+            modelBuilder.Entity<ProblemRatingEntity>()
+                .ToTable("ProblemRatings");
+            modelBuilder.Entity<ProblemTagEntity>()
+                .ToTable("ProblemTags");
+            modelBuilder.Entity<ProblemSolutionVariantEntity>()
+                .ToTable("ProblemSolutionVariants");
+            modelBuilder.Entity<ProblemImageEntity>()
+                .ToTable("ProblemImages");*/
         }
     }
 }

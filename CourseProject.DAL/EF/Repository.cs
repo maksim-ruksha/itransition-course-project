@@ -21,7 +21,7 @@ namespace CourseProject.DAL.EF
         public Repository()
         {
             _context = new DatabaseContext();
-            _dbSet = _context.Set<T>(); 
+            _dbSet = _context.Set<T>();
         }
 
         public async Task<T> CreateAsync(T item)
@@ -32,10 +32,13 @@ namespace CourseProject.DAL.EF
             return dbItemEnumerable.FirstOrDefault();
         }
 
+
         public async Task<T> FindByIdAsync(Guid id)
         {
-            return await _dbSet.FindAsync(id);
+            T model = await _dbSet.FindAsync(id);
+            return model;
         }
+
 
         /*public async Task<T> FindAsync(T item)
         {
@@ -56,6 +59,29 @@ namespace CourseProject.DAL.EF
         {
             _dbSet.Remove(item);
             await _context.SaveChangesAsync();
+        }
+
+        public void Attach(T item)
+        {
+            _context.Attach(item);
+        }
+
+        public IEnumerable<T> AsNoTracking(Func<T, bool> predicate)
+        {
+            return _dbSet.AsNoTracking().Where(predicate);
+        }
+
+        public void DetachLocal(T item)
+        {
+            T localItem = _context.Set<T>()
+                .Local
+                .FirstOrDefault(entry => entry.Equals(item));
+            if (localItem != null)
+            {
+                _context.Entry(localItem).State = EntityState.Detached;
+            }
+
+            _context.Entry(item).State = EntityState.Modified;
         }
 
         public async Task UpdateAsync(T item)

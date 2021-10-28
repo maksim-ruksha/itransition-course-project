@@ -22,7 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 
-
+// dotnet ef database update  Initial --project CourseProject.DAL -s CourseProject.API --verbose
 namespace CourseProject
 {
     public class Startup
@@ -48,23 +48,17 @@ namespace CourseProject
 
             services.AddScoped<IRepository<ProblemEntity>, Repository<ProblemEntity>>();
             services.AddScoped<IRepository<ProblemCommentEntity>, Repository<ProblemCommentEntity>>();
-            services.AddScoped<IRepository<ProblemThemeEntity>, Repository<ProblemThemeEntity>>();
             services.AddScoped<IRepository<ProblemRatingEntity>, Repository<ProblemRatingEntity>>();
-            
             services.AddScoped<IRepository<UserEntity>, Repository<UserEntity>>();
             
 
             services.AddScoped<IService<ProblemModel, ProblemEntity>, Service<ProblemModel, ProblemEntity>>();
             services.AddScoped<IService<ProblemCommentModel, ProblemCommentEntity>, Service<ProblemCommentModel, ProblemCommentEntity>>();
-            services.AddScoped<IService<ProblemThemeModel, ProblemThemeEntity>, Service<ProblemThemeModel, ProblemThemeEntity>>();
             services.AddScoped<IService<ProblemRatingModel, ProblemRatingEntity>, Service<ProblemRatingModel, ProblemRatingEntity>>();
             
             services.AddScoped<IService<UserModel, UserEntity>, Service<UserModel, UserEntity>>();
-            
-            services.AddControllers().AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver
-                    = new DefaultContractResolver());
+
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "CourseProject.API", Version = "v1"});
@@ -131,7 +125,7 @@ namespace CourseProject
             {
                 MinimumSameSitePolicy = SameSiteMode.Strict,
                 HttpOnly = HttpOnlyPolicy.Always,
-                Secure = CookieSecurePolicy.Always
+                Secure = CookieSecurePolicy.Always,
             });
 
             app.UseHttpsRedirection();
